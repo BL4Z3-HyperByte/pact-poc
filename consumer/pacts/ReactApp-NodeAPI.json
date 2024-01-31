@@ -1,0 +1,108 @@
+{
+  "consumer": {
+    "name": "ReactApp"
+  },
+  "interactions": [
+    {
+      "description": "a GET request to /products",
+      "providerStates": [
+        {
+          "name": "There are products"
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": "application/json"
+        },
+        "method": "GET",
+        "path": "/products"
+      },
+      "response": {
+        "body": {
+          "products": [
+            {
+              "description": "Best to protect your virginity.",
+              "id": "XYZ-1234",
+              "name": "Steel Underpants",
+              "price": "100000.99"
+            }
+          ]
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$.products": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "a GET request to /products/000-0000",
+      "providerStates": [
+        {
+          "name": "There is a product with the id of 000-0000"
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": "application/json"
+        },
+        "method": "GET",
+        "path": "/products/000-0000"
+      },
+      "response": {
+        "body": {
+          "product": {
+            "description": "Steel underware with lock. Best when you want to guard your virginity.",
+            "id": "000-0000",
+            "name": "Steel Underware",
+            "price": "570.99"
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "12.1.2"
+    },
+    "pactRust": {
+      "ffi": "0.4.12",
+      "models": "1.1.14"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "NodeAPI"
+  }
+}

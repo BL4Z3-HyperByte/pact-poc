@@ -1,0 +1,64 @@
+openapi: "3.0.0"
+info:
+  title: NodeAPI
+  version: "1.0.0"
+paths:
+  /products:
+    get:
+      summary: Get a list of all products
+      responses:
+        "200":
+          description: Json object conatining an array of all available products.
+          content:
+            "application/json; charset=utf-8":
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/product"
+
+  /products/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: uuid of the product
+          example: "XYZ-1234"
+      summary: get the details of a specific product.
+      responses:
+        200:
+          description: Details of the requested product.
+          content:
+            "application/json; charset=utf-8":
+              schema:
+                type: object
+                properties:
+                  product:
+                    $ref: "#/components/schemas/product"
+
+components:
+  schemas:
+    product:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "XYZ-1234"
+          description: uuid of the product
+        name:
+          type: string
+          example: Steel Underware with the Lock
+          description: name of the product
+        price:
+          type: string
+          example: 1500.59
+          description: price of the product
+        description:
+          type: string
+          example: Exclusive virgin protector 9000. Tried and tested by over 1B experts. Swear to make you a CHAD.
+          description: description of the product
