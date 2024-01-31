@@ -4,8 +4,8 @@ import process from 'process';
 
 const provider = new PactV3({
   dir: path.resolve(process.cwd(), 'pacts'),
-  consumer: 'ReactApp',
-  provider: 'NodeAPI',
+  consumer: 'react-app-pact',
+  provider: 'node-api-dredd',
   logLevel: 'debug',
 });
 
